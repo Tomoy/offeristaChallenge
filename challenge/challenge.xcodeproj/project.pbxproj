@@ -25,6 +25,7 @@
 		DB158AC21E70631E00CAB0CA /* CenterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB158AC01E70631E00CAB0CA /* CenterCollectionViewCell.xib */; };
 		DB158AC41E7064ED00CAB0CA /* CenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB158AC31E7064ED00CAB0CA /* CenterViewController.swift */; };
 		DB158AC71E70696100CAB0CA /* BottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB158AC61E70696100CAB0CA /* BottomViewController.swift */; };
+		DB158AC91E70709E00CAB0CA /* placeholderImg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DB158AC81E70709E00CAB0CA /* placeholderImg.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		DB158AC01E70631E00CAB0CA /* CenterCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CenterCollectionViewCell.xib; sourceTree = "<group>"; };
 		DB158AC31E7064ED00CAB0CA /* CenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterViewController.swift; sourceTree = "<group>"; };
 		DB158AC61E70696100CAB0CA /* BottomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomViewController.swift; sourceTree = "<group>"; };
+		DB158AC81E70709E00CAB0CA /* placeholderImg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeholderImg.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +204,7 @@
 		DB158AAE1E7042FE00CAB0CA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DB158AC81E70709E00CAB0CA /* placeholderImg.jpg */,
 				DB158AC51E7064FB00CAB0CA /* cells */,
 				DB158A811E703E0E00CAB0CA /* Main.storyboard */,
 				DB158A841E703E0E00CAB0CA /* Assets.xcassets */,
@@ -346,6 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB158A881E703E0E00CAB0CA /* LaunchScreen.storyboard in Resources */,
+				DB158AC91E70709E00CAB0CA /* placeholderImg.jpg in Resources */,
 				DB158ABE1E7059CD00CAB0CA /* BottomCollectionViewCell.xib in Resources */,
 				DB158A851E703E0E00CAB0CA /* Assets.xcassets in Resources */,
 				DB158A831E703E0E00CAB0CA /* Main.storyboard in Resources */,

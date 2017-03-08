@@ -21,6 +21,8 @@ class CenterViewController: UIViewController,UICollectionViewDelegate, UICollect
     var products = [Product]()
     var dataManager = DataManager()
     
+    var imageCache = [String:UIImage]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -58,7 +60,40 @@ class CenterViewController: UIViewController,UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:CenterCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CenterCollectionViewCell
         
-        cell.backgroundColor = UIColor.green
+        //Placeholder image for while it loads
+        cell.imageView.image = UIImage(named: "placeholderImg.jpg")
+        
+        if let imageUrl = products[indexPath.item].imageUrl {
+            
+            //This image is already cached, dont download it again
+            if let img = imageCache[imageUrl] {
+                cell.imageView.image = img
+            } else {
+                let request: NSURLRequest = NSURLRequest(url: URL(string: imageUrl)!)
+                let mainQueue = OperationQueue.main
+                NSURLConnection.sendAsynchronousRequest(request as URLRequest, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
+                    if error == nil {
+                        // Convert the downloaded data in to a UIImage object
+                        let image = UIImage(data: data!)
+                        self.imageCache[imageUrl] = image
+                        
+                        // Update the cell
+                        DispatchQueue.main.async {
+                            if let cellToUpdate:CenterCollectionViewCell = collectionView.cellForItem(at: indexPath) as! CenterCollectionViewCell? {
+                                if image != nil {
+                                    cellToUpdate.imageView.image = image!
+                                }
+                                
+                            }
+                        }
+                        collectionView.reloadItems(at: [indexPath])
+                    }
+                    else {
+                        print("Error: \(error?.localizedDescription)")
+                    }
+                })
+            }
+        }
     
         return cell
     }

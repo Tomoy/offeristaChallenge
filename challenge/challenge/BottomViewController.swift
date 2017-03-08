@@ -17,6 +17,8 @@ class BottomViewController: UIViewController,UICollectionViewDelegate, UICollect
     var products = [Product]()
     var dataManager = DataManager()
     
+    var imageCache = [String:UIImage]()
+    
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +66,42 @@ class BottomViewController: UIViewController,UICollectionViewDelegate, UICollect
         if let price = products[indexPath.item].price {
             cell.priceLabel.text = "€\(price)"
         }
-
+        
+        //Placeholder image for while it loads
+        cell.productImageView.image = UIImage(named: "placeholderImg.jpg")
+        
+        if let imageUrl = products[indexPath.item].imageUrl {
+            
+            //This image is already cached, dont download it again
+            if let img = imageCache[imageUrl] {
+                cell.productImageView.image = img
+            } else {
+                let request: NSURLRequest = NSURLRequest(url: URL(string: imageUrl)!)
+                let mainQueue = OperationQueue.main
+                NSURLConnection.sendAsynchronousRequest(request as URLRequest, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
+                    if error == nil {
+                        // Convert the downloaded data in to a UIImage object
+                        let image = UIImage(data: data!)
+                        self.imageCache[imageUrl] = image
+                        
+                        // Update the cell
+                        DispatchQueue.main.async {
+                            if let cellToUpdate:BottomCollectionViewCell = collectionView.cellForItem(at: indexPath) as! BottomCollectionViewCell? {
+                                if image != nil {
+                                    cellToUpdate.productImageView.image = image!
+                                }
+                                
+                            }
+                        }
+                        collectionView.reloadItems(at: [indexPath])
+                    }
+                    else {
+                        print("Error: \(error?.localizedDescription)")
+                    }
+                })
+            }
+        }
+        
         
         return cell
     }
