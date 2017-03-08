@@ -6,7 +6,7 @@ target 'challenge' do
   use_frameworks!
 
     pod 'Alamofire'
-    pod 'AlamofireObjectMapper', '~> 4.0'
+    pod 'AlamofireObjectMapper'
 
   target 'challengeTests' do
     inherit! :search_paths
