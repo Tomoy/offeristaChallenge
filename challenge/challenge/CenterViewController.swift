@@ -14,6 +14,8 @@ class CenterViewController: UIViewController,UICollectionViewDelegate, UICollect
 
     let endpointUrl:String = "https://s3-eu-west-1.amazonaws.com/offerista-challenge/2.json"
     let viewTitle:String = "Interessante Angebote"
+    
+    let kCollectionViewMargin:CGFloat = 10.0
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -69,7 +71,7 @@ class CenterViewController: UIViewController,UICollectionViewDelegate, UICollect
             if let img = imageCache[imageUrl] {
                 cell.imageView.image = img
             } else {
-                let request: NSURLRequest = NSURLRequest(url: URL(string: imageUrl)!)
+                let request = URLRequest(url: URL(string: imageUrl)!)
                 let mainQueue = OperationQueue.main
                 NSURLConnection.sendAsynchronousRequest(request as URLRequest, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
                     if error == nil {
@@ -101,11 +103,11 @@ class CenterViewController: UIViewController,UICollectionViewDelegate, UICollect
     //Collectionview layout delegate methods
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        return UIEdgeInsets(top: kCollectionViewMargin, left: kCollectionViewMargin, bottom: kCollectionViewMargin, right: kCollectionViewMargin)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return kCollectionViewMargin
     }
     
     

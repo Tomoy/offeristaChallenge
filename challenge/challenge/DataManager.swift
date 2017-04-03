@@ -41,19 +41,4 @@ class DataManager: NSObject {
             }
         }
     }
-    
-    func downloadImage(url:String) {
-        
-        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-            var documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            documentsURL.appendPathComponent("duck.png")
-            return (documentsURL, [.removePreviousFile])
-        }
-        
-        Alamofire.download(url, to: destination).responseData { response in
-            if let destinationUrl = response.destinationURL {
-               // completionHandler(destinationUrl)
-            }
-        }
-    }
 }

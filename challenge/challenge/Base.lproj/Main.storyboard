@@ -24,23 +24,15 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nP9-9o-djQ">
                                 <rect key="frame" x="0.0" y="20" width="375" height="248"/>
-                                <subviews>
-                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="N5O-CD-zyk">
-                                        <rect key="frame" x="145" y="211" width="85" height="37"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="85" id="Q4r-rt-TRA"/>
-                                            <constraint firstAttribute="height" constant="37" id="cFF-QH-iXh"/>
-                                        </constraints>
-                                    </pageControl>
-                                </subviews>
                                 <color key="backgroundColor" red="0.83529411760000005" green="0.83529411760000005" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="N5O-CD-zyk" firstAttribute="top" secondItem="nP9-9o-djQ" secondAttribute="top" constant="211" id="L0f-l8-31s"/>
-                                    <constraint firstItem="N5O-CD-zyk" firstAttribute="centerX" secondItem="nP9-9o-djQ" secondAttribute="centerX" id="OP4-uC-rhi"/>
-                                    <constraint firstAttribute="trailing" secondItem="N5O-CD-zyk" secondAttribute="trailing" constant="145" id="PQg-ho-xeI"/>
-                                    <constraint firstAttribute="bottom" secondItem="N5O-CD-zyk" secondAttribute="bottom" id="ZKZ-xk-Xg3"/>
-                                </constraints>
                             </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="N5O-CD-zyk">
+                                <rect key="frame" x="145" y="230" width="85" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="Q4r-rt-TRA"/>
+                                    <constraint firstAttribute="height" constant="37" id="cFF-QH-iXh"/>
+                                </constraints>
+                            </pageControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hef-mj-h66">
                                 <rect key="frame" x="21" y="200" width="332" height="30"/>
                                 <constraints>
@@ -84,9 +76,11 @@
                             <constraint firstItem="IwX-hQ-3Uw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9EN-zc-Z8M"/>
                             <constraint firstAttribute="trailing" secondItem="1dD-kJ-KdP" secondAttribute="trailing" id="Iz4-oJ-kf0"/>
                             <constraint firstItem="FXq-Cc-xSo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Lpr-6m-Cbr"/>
+                            <constraint firstItem="N5O-CD-zyk" firstAttribute="top" secondItem="hef-mj-h66" secondAttribute="bottom" id="NjV-WU-AYl"/>
                             <constraint firstItem="hef-mj-h66" firstAttribute="top" secondItem="nP9-9o-djQ" secondAttribute="bottom" constant="-68" id="V2Y-g2-RGR"/>
                             <constraint firstItem="hef-mj-h66" firstAttribute="top" secondItem="IwX-hQ-3Uw" secondAttribute="bottom" constant="9" id="Ve3-x3-5KD"/>
                             <constraint firstItem="1dD-kJ-KdP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="VlR-69-dvz"/>
+                            <constraint firstItem="N5O-CD-zyk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="X6S-fV-0WW"/>
                             <constraint firstAttribute="trailing" secondItem="nP9-9o-djQ" secondAttribute="trailing" id="gTr-9C-sPe"/>
                             <constraint firstItem="1dD-kJ-KdP" firstAttribute="top" secondItem="FXq-Cc-xSo" secondAttribute="bottom" id="i7z-Yn-SIc"/>
                             <constraint firstAttribute="trailing" secondItem="FXq-Cc-xSo" secondAttribute="trailing" id="mO9-3s-XtL"/>
@@ -98,6 +92,7 @@
                     </view>
                     <connections>
                         <outlet property="categoryLabel" destination="hef-mj-h66" id="5SL-Vq-R4Y"/>
+                        <outlet property="pageControl" destination="N5O-CD-zyk" id="Sjn-lN-Eit"/>
                         <outlet property="scrollView" destination="nP9-9o-djQ" id="ATq-Js-0zE"/>
                         <outlet property="titleLabel" destination="IwX-hQ-3Uw" id="F5v-ww-Pe3"/>
                     </connections>

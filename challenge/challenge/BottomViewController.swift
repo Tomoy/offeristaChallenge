@@ -19,6 +19,8 @@ class BottomViewController: UIViewController,UICollectionViewDelegate, UICollect
     
     var imageCache = [String:UIImage]()
     
+    let kCollectionViewMargin:CGFloat = 10.0
+    
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +78,7 @@ class BottomViewController: UIViewController,UICollectionViewDelegate, UICollect
             if let img = imageCache[imageUrl] {
                 cell.productImageView.image = img
             } else {
-                let request: NSURLRequest = NSURLRequest(url: URL(string: imageUrl)!)
+                let request = URLRequest(url: URL(string: imageUrl)!)
                 let mainQueue = OperationQueue.main
                 NSURLConnection.sendAsynchronousRequest(request as URLRequest, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
                     if error == nil {
@@ -109,11 +111,11 @@ class BottomViewController: UIViewController,UICollectionViewDelegate, UICollect
     //Collectionview layout delegate methods
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        return UIEdgeInsets(top: kCollectionViewMargin, left: kCollectionViewMargin, bottom: kCollectionViewMargin, right: kCollectionViewMargin)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return kCollectionViewMargin
     }
     
     

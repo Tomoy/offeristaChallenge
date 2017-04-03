@@ -14,6 +14,7 @@ class ViewController: UIViewController, DataManagerDelegate, UIScrollViewDelegat
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var pageControl: UIPageControl!
     
     var dataManager = DataManager()
     var products = [Product]()
@@ -30,17 +31,39 @@ class ViewController: UIViewController, DataManagerDelegate, UIScrollViewDelegat
 
     }
     
+    //UIScrollview delegate methods
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView){
+        // Test the offset and calculate the current page after scrolling ends
+        let pageWidth:CGFloat = scrollView.frame.width
+        let currentPage:CGFloat = floor((scrollView.contentOffset.x-pageWidth/2)/pageWidth)+1
+        // Change the indicator
+        self.pageControl.currentPage = Int(currentPage);
+        
+        // Change title and category accordingly
+        
+        if let category = products[Int(currentPage)].category {
+            categoryLabel.text = category
+        }
+        
+        if let title = products[Int(currentPage)].title {
+            titleLabel.text = title
+        }
+    }
+    
+    
     //Datamanager delegate method
     
     func dataWasLoaded() {
         products = dataManager.products
+        pageControl.numberOfPages = products.count
 
         let amtProducts = products.count - 1
         for i in 0...amtProducts {
             
             if let imgUrl = products[i].imageUrl {
                 
-                let request: NSURLRequest = NSURLRequest(url: URL(string:imgUrl)!)
+                let request = URLRequest(url: URL(string: imgUrl)!)
                 let mainQueue = OperationQueue.main
                 NSURLConnection.sendAsynchronousRequest(request as URLRequest, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
                     if error == nil {
